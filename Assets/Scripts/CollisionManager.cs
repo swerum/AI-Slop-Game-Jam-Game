@@ -13,15 +13,18 @@ public class CollisionManager : MonoBehaviour
     {
         _collidingObjects = new List<GameObject>();
     }
-    void OnCollisionEnter(Collision col)
-    {
-        if (_layerMasks.Contains(col.gameObject.layer ))
+    private void OnTriggerEnter(Collider col) {
+        foreach (LayerMask mask in _layerMasks)
         {
-            _collidingObjects.Append(col.gameObject);
+            if ((mask & (1 << col.gameObject.layer)) != 0)
+            {
+                _collidingObjects.Add(col.gameObject);
+                return;
+            }
         }
     }
 
-    void OnCollisionExit(Collision col)
+    void OnTriggerExit(Collider col)
     {
         if (_collidingObjects.Contains(col.gameObject))
         {

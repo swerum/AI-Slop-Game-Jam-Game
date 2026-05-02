@@ -23,6 +23,7 @@ namespace Player
         private bool _attackPressed;
         public bool AttackPressed {  get { return _attackPressed; }}
         private SpriteRenderer _spriteRenderer;
+        private Transform _attackObject;
         
         private void OnEnable()
         {
@@ -31,6 +32,7 @@ namespace Player
             _playerInput.AttackEvent += HandleAttack;
             _spriteRenderer = GetComponent<SpriteRenderer>();
             Assert.IsNotNull(_spriteRenderer,"The Player must have a Sprite Renderer");
+            _attackObject = transform.GetChild(0);
         }
 
         private void OnDisable()
@@ -59,7 +61,7 @@ namespace Player
             if ((!(velocity.x > 0f) || _isFacingRight) && (!(velocity.x < 0f) || !_isFacingRight)) return;
             
             _isFacingRight = !_isFacingRight;
-            // _spriteTransform.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
+            _attackObject.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
             _spriteRenderer.flipX = _isFacingRight;
         }
 
