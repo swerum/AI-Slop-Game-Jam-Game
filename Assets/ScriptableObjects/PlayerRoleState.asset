@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2d8b8c849ca47f39d4f2e64389c898, type: 3}
   m_Name: PlayerRoleState
   m_EditorClassIdentifier: 
-  _rollSpeedBoost: 50
-  _rollTime: 0.3
+  _stateAnimation: Default
+  _rollSpeedBoost: 200
+  _rollTime: 0.2
   _speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -27,8 +28,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.27333334
     - serializedVersion: 3
-      time: 0.25620377
-      value: 0.46467295
+      time: 0.23397171
+      value: 0.18955699
       inSlope: 1.9724469
       outSlope: 1.9724469
       tangentMode: 0

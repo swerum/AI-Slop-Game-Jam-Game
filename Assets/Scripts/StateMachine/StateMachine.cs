@@ -8,6 +8,7 @@ namespace BerserkPixel.StateMachine
     public abstract class StateMachine<T> : MonoBehaviour where T : MonoBehaviour
     {
         [SerializeField] private List<State<T>> _states;
+        [SerializeField] private Animator _animator;
 
         [Header("DEBUG")] 
         [SerializeField] private bool _debug = true;
@@ -24,7 +25,10 @@ namespace BerserkPixel.StateMachine
         protected virtual void Start()
         {
             if (_states.Count <= 0) return;
-
+            foreach (var state in _states)
+            {
+                state.OnStart(_parent);
+            }
             SetState(_states[0]);
         }
 
@@ -40,6 +44,10 @@ namespace BerserkPixel.StateMachine
             var newState = _states.FirstOrDefault(s => s.GetType() == newStateType);
             if (newState)
             {
+                Debug.Log(newState.StateAnimation);
+                if (newState.StateAnimation != null) {
+                    _animator.Play(newState.StateAnimation);
+                }
                 SetState(newState);
             }
         }

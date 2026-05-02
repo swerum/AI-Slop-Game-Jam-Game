@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbfd7035c07f42ccbafd919ea720839, type: 3}
-  m_Name: PlayerMoveState
+  m_Script: {fileID: 11500000, guid: 7f4b02cc2e6364110a45a374a4e73755, type: 3}
+  m_Name: PlayerAttackState
   m_EditorClassIdentifier: 
-  _stateAnimation: Default
-  _speed: 50
+  _stateAnimation: Attack
+  _attackCollider: {fileID: 0}
+  _damage: 20

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3aab3684966438b914e447ea185d53, type: 3}
   m_Name: PlayerIdleState
   m_EditorClassIdentifier: 
+  _stateAnimation: Default

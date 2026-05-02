@@ -8,6 +8,7 @@ namespace Player.Input
     {
         public event UnityAction<Vector2> MovementEvent = delegate { };
         public event UnityAction<bool> RollEvent = delegate { };
+        public event UnityAction<bool> AttackEvent = delegate {  }; 
 
         private GameControls _playerActions;
 
@@ -51,6 +52,10 @@ namespace Player.Input
             {
                 RollEvent?.Invoke(context.ReadValueAsButton());
             }
+        }
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            AttackEvent?.Invoke(context.performed);
         }
     }
 }
