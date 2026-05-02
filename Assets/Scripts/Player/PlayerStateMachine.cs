@@ -19,10 +19,12 @@ namespace Player
         // since our sprite is facing right, we set it to true
         private bool _isFacingRight = true;
         private SpriteRenderer _spriteRenderer;
+        public bool RollPressed;
         
         private void OnEnable()
         {
             _playerInput.MovementEvent += HandleMove;
+            _playerInput.RollEvent += HandleRoll; // subsribe
             _spriteRenderer = GetComponent<SpriteRenderer>();
             Assert.IsNotNull(_spriteRenderer,"The Player must have a Sprite Renderere");
         }
@@ -30,8 +32,13 @@ namespace Player
         private void OnDisable()
         {
             _playerInput.MovementEvent -= HandleMove;
+            _playerInput.RollEvent -= HandleRoll; // unsubsribe
         }
 
+        private void HandleRoll(bool isPressed)
+        {
+            RollPressed = isPressed;
+        }
         private void HandleMove(Vector2 movement)
         {
             Movement = movement;

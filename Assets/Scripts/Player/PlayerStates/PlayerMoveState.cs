@@ -22,6 +22,12 @@ namespace Player.States
 
         public override void ChangeState()
         {
+            if (_runner.RollPressed) Debug.Log("Roll");
+            if (_runner.RollPressed)
+            {
+                _runner.SetState(typeof(PlayerRollState));
+                return;
+            }
             if (_playerInput == Vector3.zero)
             {
                 _runner.SetState(typeof(PlayerIdleState));
