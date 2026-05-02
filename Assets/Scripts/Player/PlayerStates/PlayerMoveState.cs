@@ -3,29 +3,26 @@ using UnityEngine;
 
 namespace Player.States
 {
-    [CreateAssetMenu(menuName = "States/Player/Move")]
+    [CreateAssetMenu(menuName = "States/Player/Move 3D")]
     public class PlayerMoveState : State<PlayerStateMachine>
     {
-        [SerializeField, Range(0f, 50f)] private float _speed = 25f;
+        [SerializeField, Range(10, 250)] private float _speed = 300f;
 
-        private Vector2 _playerInput;
+        private Vector3 _playerInput;
 
         public override void Tick(float deltaTime)
         {
-            _playerInput = _runner.Movement;
+            _playerInput = new Vector3(_runner.Movement.x, 0, _runner.Movement.y);
         }
 
         public override void FixedTick(float fixedDeltaTime)
         {
-            // we need a multiplier since we don't want the _speed to be seen like a big
-            // number in the inspector. We can also do [SerializeField, Range(250f, 500f)]
-            var speedMultiplier = 10;
-            _runner.Move(_playerInput * (_speed * speedMultiplier * fixedDeltaTime));
+            _runner.Move(_playerInput * (_speed * fixedDeltaTime));
         }
 
         public override void ChangeState()
         {
-            if (_playerInput.sqrMagnitude <= .1f)
+            if (_playerInput == Vector3.zero)
             {
                 _runner.SetState(typeof(PlayerIdleState));
             }

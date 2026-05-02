@@ -5,12 +5,13 @@ using UnityEngine.Assertions;
 
 namespace Player
 {
+    [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerStateMachine : StateMachine<PlayerStateMachine>
     {
         [SerializeField] private PlayerInput _playerInput;
         // this is the Transform we want to rotate on the Y axis when changing directions
         [SerializeField] private Transform _spriteTransform;
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Rigidbody _rigidbody;
 
         // this Vector2 can be used on each State to determine any change
         public Vector2 Movement { get; private set; }
@@ -37,7 +38,7 @@ namespace Player
             CheckFlipSprite(movement);
         }
 
-        private void CheckFlipSprite(Vector2 velocity)
+        private void CheckFlipSprite(Vector3 velocity)
         {
             if ((!(velocity.x > 0f) || _isFacingRight) && (!(velocity.x < 0f) || !_isFacingRight)) return;
             
@@ -47,7 +48,7 @@ namespace Player
         }
 
         // just  a simple implementation of movement by setting the velocity of the Rigidbody
-        public void Move(Vector2 velocity)
+        public void Move(Vector3 velocity)
         {
             _rigidbody.velocity = velocity;
         }
