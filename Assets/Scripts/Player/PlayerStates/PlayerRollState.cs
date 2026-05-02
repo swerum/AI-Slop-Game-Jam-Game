@@ -6,17 +6,22 @@ namespace Player.States
     [CreateAssetMenu(menuName = "States/Player/Roll")]
     public class PlayerRollState : State<PlayerStateMachine>
     {
-        [SerializeField] private float _rollSpeed = 50f;
+        [SerializeField] private float _rollSpeedBoost = 50f;
         [SerializeField] private float _rollTime = .5f;
+        [SerializeField] private AnimationCurve _speedCurve;
+        // Use player move state to get the base movement speed
+        [SerializeField] private PlayerMoveState _playerMoveState;
 
         [Header("DEBUG")] 
         [SerializeField] private bool _debug = true;
 
         private Vector3 _movementDirection;
         private float _elapsedTime;
+        private float _baseSpeed;
 
         public override void Enter(PlayerStateMachine parent)
         {
+            _baseSpeed = _playerMoveState.Speed;
             base.Enter(parent);
             
             // grab the direction were the player is aiming in a 3D plane
@@ -30,7 +35,7 @@ namespace Player.States
             var startingPos = parent.transform.position;
 
             // calculate the desired end position
-            _movementDirection = startingPos + playerInput * _rollSpeed;
+            _movementDirection = playerInput; //startingPos + playerInput * _rollSpeedBoost;
 
             if (!_debug) return;
             
@@ -52,7 +57,9 @@ namespace Player.States
             if (!(_elapsedTime < _rollTime)) return;
 
             // each fixed frame we move a fraction towards the end value
-            _runner.Move(_movementDirection * (_elapsedTime / _rollTime));
+            var ratioRollComplete  = 2*_elapsedTime / _rollTime;
+            var speed = _baseSpeed + _speedCurve.Evaluate(ratioRollComplete)*_rollSpeedBoost;
+            _runner.Move(_movementDirection * speed*fixedDeltaTime);
         }
 
         public override void ChangeState()

@@ -12,6 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2d8b8c849ca47f39d4f2e64389c898, type: 3}
   m_Name: PlayerRoleState
   m_EditorClassIdentifier: 
-  _rollSpeed: 50
-  _rollTime: 0.5
+  _rollSpeedBoost: 50
+  _rollTime: 0.3
+  _speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.035009917
+      outSlope: 0.035009917
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.27333334
+    - serializedVersion: 3
+      time: 0.25620377
+      value: 0.46467295
+      inSlope: 1.9724469
+      outSlope: 1.9724469
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.082783446
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 0
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _playerMoveState: {fileID: 11400000, guid: a7be0f420016c464ea1ad88bfa2599b5, type: 2}
   _debug: 1
