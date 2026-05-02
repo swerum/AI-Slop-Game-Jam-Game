@@ -6,7 +6,7 @@ namespace Player.States
     [CreateAssetMenu(menuName = "States/Player/Move 3D")]
     public class PlayerMoveState : State<PlayerStateMachine>
     {
-        [SerializeField, Range(10, 250)] private float _speed = 300f;
+        [SerializeField, Range(10, 100)] private float _speed = 50;
         public float Speed {get {return _speed; }}
 
         private Vector3 _playerInput;

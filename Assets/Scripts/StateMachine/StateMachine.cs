@@ -44,7 +44,6 @@ namespace BerserkPixel.StateMachine
             var newState = _states.FirstOrDefault(s => s.GetType() == newStateType);
             if (newState)
             {
-                Debug.Log(newState.StateAnimation);
                 if (newState.StateAnimation != null) {
                     _animator.Play(newState.StateAnimation);
                 }
