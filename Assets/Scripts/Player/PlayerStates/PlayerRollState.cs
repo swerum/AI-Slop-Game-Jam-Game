@@ -10,7 +10,6 @@ namespace Player.States
         [SerializeField] private float _rollTime = .5f;
         [SerializeField] private AnimationCurve _speedCurve;
         // Use player move state to get the base movement speed
-        [SerializeField] private PlayerMoveState _playerMoveState;
 
         [Header("DEBUG")] 
         [SerializeField] private bool _debug = true;
@@ -19,9 +18,12 @@ namespace Player.States
         private float _elapsedTime;
         private float _baseSpeed;
 
+        public override void OnStart(PlayerStateMachine parent)
+        {
+            _baseSpeed = parent.Speed;
+        }
         public override void Enter(PlayerStateMachine parent)
         {
-            _baseSpeed = _playerMoveState.Speed;
             base.Enter(parent);
             
             // grab the direction were the player is aiming in a 3D plane
@@ -29,6 +31,7 @@ namespace Player.States
             
             // instantly set this to false so there's no double rolling
             parent.RollPressed = false;
+            _runner.IsInvincible = true;
 
             _elapsedTime = 0f;
 
@@ -67,6 +70,7 @@ namespace Player.States
             // only change if the "cooldown" timer is reached
             if (_elapsedTime >= _rollTime)
             {
+                _runner.IsInvincible = false;
                 _runner.SetState(typeof(PlayerIdleState));
             }
         }

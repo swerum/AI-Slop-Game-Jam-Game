@@ -1,63 +1,61 @@
 using BerserkPixel.StateMachine;
 using Player.Input;
+using Player.States;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Player
 {
-    [RequireComponent(typeof(SpriteRenderer))]
+    
     public class PlayerStateMachine : StateMachine<PlayerStateMachine>
     {
-        [SerializeField] private PlayerInput _playerInput;
+        [Header("Player Attributes")]
+        [SerializeField] private InputManager _playerInput;
+        [SerializeField] private GameManager _gameManager;
         // this is the Transform we want to rotate on the Y axis when changing directions
-        [SerializeField] private Transform _spriteTransform;
-        [SerializeField] private Rigidbody _rigidbody;
 
         // this Vector2 can be used on each State to determine any change
         public Vector2 Movement { get; private set; }
-
-        // since our sprite is facing right, we set it to true
-        private bool _isFacingRight = true;
-        private SpriteRenderer _spriteRenderer;
-        public bool RollPressed;
+        private bool _rollPressed;
+        public bool RollPressed { get {return _rollPressed; } set { _rollPressed = value; } }
+        private bool _attackPressed;
+        public bool AttackPressed {  get { return _attackPressed; }}
+        
         
         private void OnEnable()
         {
             _playerInput.MovementEvent += HandleMove;
             _playerInput.RollEvent += HandleRoll; // subsribe
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            Assert.IsNotNull(_spriteRenderer,"The Player must have a Sprite Renderere");
+            _playerInput.AttackEvent += HandleAttack;
+            
         }
 
         private void OnDisable()
         {
             _playerInput.MovementEvent -= HandleMove;
-            _playerInput.RollEvent -= HandleRoll; // unsubsribe
+            _playerInput.RollEvent -= HandleRoll; 
+            _playerInput.AttackEvent -= HandleAttack;
         }
 
         private void HandleRoll(bool isPressed)
         {
-            RollPressed = isPressed;
+            _rollPressed = isPressed;
         }
         private void HandleMove(Vector2 movement)
         {
             Movement = movement;
-            CheckFlipSprite(movement);
         }
-
-        private void CheckFlipSprite(Vector3 velocity)
+        private void HandleAttack(bool isPressed)
         {
-            if ((!(velocity.x > 0f) || _isFacingRight) && (!(velocity.x < 0f) || !_isFacingRight)) return;
-            
-            _isFacingRight = !_isFacingRight;
-            // _spriteTransform.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
-            _spriteRenderer.flipX = _isFacingRight;
+            _attackPressed = isPressed;
         }
-
-        // just  a simple implementation of movement by setting the velocity of the Rigidbody
-        public void Move(Vector3 velocity)
+        public override void DamageResponse(int totalHealth)
         {
-            _rigidbody.velocity = velocity;
+            SetState(typeof(PlayerHurtState));
+            if (totalHealth <= 0)
+            {
+                _gameManager.OpenMenuFromGameplay(GameState.GameOver);
+            }
         }
     }
 }

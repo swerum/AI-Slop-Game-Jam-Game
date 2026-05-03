@@ -4,6 +4,9 @@ namespace BerserkPixel.StateMachine
     public enum AnimationTriggerType
     {
         EnemyDamaged,
-        PlayFootstepSound
+        PlayFootstepSound,
+        // Player-specific triggers
+        HitBox,
+        FinishAttack
     }
 }

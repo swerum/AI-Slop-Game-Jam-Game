@@ -44,6 +44,24 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cb684f0-1aed-47c3-8e7d-134d6a5e09b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""94fb998f-ffa8-4c71-a6e7-0424a5a083c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,153 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ea881ed-9e41-4630-a38b-88bbc0a86c61"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ab98c8ec-2fc3-4f53-b6a7-54948f1536b9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""789a5db1-c2a6-418e-a211-ebc23805b797"",
+            ""actions"": [
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Value"",
+                    ""id"": ""f4123b7c-4eb4-43e7-9731-dc87530592f3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""351c52dc-3013-4f3f-abe4-fb4a4fdaf327"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""04135f1d-4a67-4292-bb99-e0e4893054ef"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cbdd64a5-2c00-4253-8718-8e8a3af1e65a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9e10ffac-bbed-4d7d-9f9b-727a0ec818ce"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""484d628d-7214-4f04-994d-c8ddebb3cb2e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""7a945b62-f81c-4bf8-8870-9b57225089c3"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""09e8f447-adca-4eef-a2f6-27e72c52984d"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8a187e0-72f2-42f2-854a-b3d7f9855b98"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd69dfe5-cf33-4985-a3c9-65ec3a1471ea"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7941c2e6-f999-428b-a1ec-0c8df1566a01"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +287,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_PauseGame = m_Player.FindAction("PauseGame", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +356,16 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Roll;
+    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_PauseGame;
     public struct PlayerActions
     {
         private @GameControls m_Wrapper;
         public PlayerActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Roll => m_Wrapper.m_Player_Roll;
+        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @PauseGame => m_Wrapper.m_Player_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +381,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Roll.started += instance.OnRoll;
             @Roll.performed += instance.OnRoll;
             @Roll.canceled += instance.OnRoll;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -216,6 +397,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Roll.started -= instance.OnRoll;
             @Roll.performed -= instance.OnRoll;
             @Roll.canceled -= instance.OnRoll;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -233,9 +420,70 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_Select;
+    public struct UIActions
+    {
+        private @GameControls m_Wrapper;
+        public UIActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @Select => m_Wrapper.m_UI_Select;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @Navigate.started += instance.OnNavigate;
+            @Navigate.performed += instance.OnNavigate;
+            @Navigate.canceled += instance.OnNavigate;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @Navigate.started -= instance.OnNavigate;
+            @Navigate.performed -= instance.OnNavigate;
+            @Navigate.canceled -= instance.OnNavigate;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnNavigate(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

@@ -5,7 +5,10 @@ namespace BerserkPixel.StateMachine
     public abstract class State<T> : ScriptableObject where T : MonoBehaviour
     {
         protected T _runner;
+        [SerializeField] protected string _stateAnimation = null;
+        public string StateAnimation {get {return _stateAnimation;}}
     
+        public virtual void OnStart(T parent) {}
         // called whenever we enter this state. Good for setting up variables
         public virtual void Enter(T parent)
         {
