@@ -18,6 +18,7 @@ namespace BerserkPixel.StateMachine
         [Header("Game Design")]
         [SerializeField, Range(10, 100)] private float _speed = 50;
         [SerializeField] private float _invincibilityTime;
+        [SerializeField, Range(10, 100)]  private int _flashesDuringInvincibility = 7;
         public float Speed {get {return _speed; }}
 
         [Header("DEBUG")] 
@@ -102,18 +103,24 @@ namespace BerserkPixel.StateMachine
 
         private IEnumerator UnsetInvincible()
         {
-            // suspend execution for 5 seconds
-            yield return new WaitForSeconds(_invincibilityTime);
+            bool isVisible = true;
+            for (int i = 0; i < _flashesDuringInvincibility; i++)
+            {
+                isVisible = !isVisible;
+                _spriteRenderer.enabled = isVisible;
+                yield return new WaitForSeconds(_invincibilityTime/_flashesDuringInvincibility);
+            }
+            _spriteRenderer.enabled = true;
             _isInvincible = false;
         }
-        protected void SetInvincible()
+        public void SetInvincible()
         {
             _isInvincible = true;
             StartCoroutine(UnsetInvincible());
 
         }
 
-                // just  a simple implementation of movement by setting the velocity of the Rigidbody
+        // just  a simple implementation of movement by setting the velocity of the Rigidbody
         public void Move(Vector3 velocity)
         {
             _rigidbody.velocity = velocity;
@@ -123,5 +130,6 @@ namespace BerserkPixel.StateMachine
             _attackObject.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
             _spriteRenderer.flipX = _isFacingRight;
         }
+        public abstract void Hit(float damage);
     }
 }

@@ -1,5 +1,6 @@
 using BerserkPixel.StateMachine;
 using Player.Input;
+using Player.States;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -46,6 +47,10 @@ namespace Player
         private void HandleAttack(bool isPressed)
         {
             _attackPressed = isPressed;
+        }
+        public override void Hit(float damage)
+        {
+            SetState(typeof(PlayerHurtState));
         }
     }
 }

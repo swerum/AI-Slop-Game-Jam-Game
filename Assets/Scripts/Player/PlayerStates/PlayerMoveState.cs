@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player.States
 {
-    [CreateAssetMenu(menuName = "States/Player/Move 3D")]
+    [CreateAssetMenu(menuName = "States/Player/Move")]
     public class PlayerMoveState : State<PlayerStateMachine>
     {
         private Vector3 _playerInput;
