@@ -9,6 +9,8 @@ namespace BerserkPixel.StateMachine
     {
         [SerializeField] private List<State<T>> _states;
         [SerializeField] private Animator _animator;
+        [SerializeField, Range(10, 100)] private float _speed = 50;
+        public float Speed {get {return _speed; }}
 
         [Header("DEBUG")] 
         [SerializeField] private bool _debug = true;

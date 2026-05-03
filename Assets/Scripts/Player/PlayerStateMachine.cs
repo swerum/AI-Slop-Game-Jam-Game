@@ -8,6 +8,7 @@ namespace Player
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerStateMachine : StateMachine<PlayerStateMachine>
     {
+        [Header("Player Attributes")]
         [SerializeField] private PlayerInput _playerInput;
         // this is the Transform we want to rotate on the Y axis when changing directions
         [SerializeField] private Transform _spriteTransform;

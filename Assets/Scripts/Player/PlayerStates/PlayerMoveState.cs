@@ -6,11 +6,13 @@ namespace Player.States
     [CreateAssetMenu(menuName = "States/Player/Move 3D")]
     public class PlayerMoveState : State<PlayerStateMachine>
     {
-        [SerializeField, Range(10, 100)] private float _speed = 50;
-        public float Speed {get {return _speed; }}
-
         private Vector3 _playerInput;
+        private float _speed;
 
+        public override void OnStart(PlayerStateMachine parent)
+        {
+            _speed = parent.Speed;
+        }
         public override void Tick(float deltaTime)
         {
             _playerInput = new Vector3(_runner.Movement.x, 0, _runner.Movement.y);
