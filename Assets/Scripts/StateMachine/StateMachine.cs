@@ -17,8 +17,8 @@ namespace BerserkPixel.StateMachine
         [SerializeField] private Rigidbody _rigidbody;
         [Header("Game Design")]
         [SerializeField, Range(10, 100)] private float _speed = 50;
-        [SerializeField] private float _invincibilityTime;
-        [SerializeField, Range(10, 100)]  private int _flashesDuringInvincibility = 7;
+        [SerializeField, Range(0, 1)] private float _invincibilityTime;
+        [SerializeField, Range(1, 10)]  private int _flashesDuringInvincibility = 7;
         public float Speed {get {return _speed; }}
 
         [Header("DEBUG")] 

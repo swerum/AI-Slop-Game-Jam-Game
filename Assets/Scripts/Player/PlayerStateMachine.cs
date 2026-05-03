@@ -50,7 +50,9 @@ namespace Player
         }
         public override void Hit(float damage)
         {
+            if (IsInvincible) return;
             SetState(typeof(PlayerHurtState));
+            Debug.Log("Player took "+damage+" damage.");
         }
     }
 }

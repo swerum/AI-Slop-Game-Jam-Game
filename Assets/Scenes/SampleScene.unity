@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 1281860317}
   - component: {fileID: 1281860319}
   - component: {fileID: 1281860318}
+  - component: {fileID: 1281860320}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
@@ -653,6 +654,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.92, y: 0, z: 0}
+--- !u!114 &1281860320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281860316}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec12d31b0bcfd4801a3c3d07642ffdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 40
 --- !u!1 &1464770736
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +855,7 @@ GameObject:
   - component: {fileID: 1568513018}
   - component: {fileID: 1568513017}
   - component: {fileID: 1568513016}
+  - component: {fileID: 1568513019}
   m_Layer: 8
   m_Name: Spike
   m_TagString: Untagged
@@ -936,6 +951,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568513019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568513015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec12d31b0bcfd4801a3c3d07642ffdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
 --- !u!1 &1623723183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,11 +1285,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7be0f420016c464ea1ad88bfa2599b5, type: 2}
   - {fileID: 11400000, guid: 2fcc4d1986e9f4a4991f3662aaece1dc, type: 2}
   - {fileID: 11400000, guid: f9d4d13983e224074b178b83fe900152, type: 2}
+  - {fileID: 11400000, guid: 6221530de93f34e29937f8c853918fdb, type: 2}
   _animator: {fileID: 1748226918}
   _spriteTransform: {fileID: 1748226913}
   _rigidbody: {fileID: 1748226917}
   _speed: 50
-  _invincibilityTime: 0
+  _invincibilityTime: 0.313
   _flashesDuringInvincibility: 7
   _debug: 1
   _playerInput: {fileID: 1748226914}
@@ -1343,7 +1372,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1748226911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a6dae807300c41f0b13c72f541a308a, type: 3}
+  m_Script: {fileID: 11500000, guid: 18ae92b60825748ed914b9b8795a296a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _layerMasks:
