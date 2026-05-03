@@ -15,10 +15,12 @@ namespace BerserkPixel.StateMachine
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _spriteTransform;
         [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private HealthBar _healthBar;
         [Header("Game Design")]
         [SerializeField, Range(10, 100)] private float _speed = 50;
         [SerializeField, Range(0, 1)] private float _invincibilityTime;
         [SerializeField, Range(1, 10)]  private int _flashesDuringInvincibility = 7;
+        [SerializeField, Range(0, 500)] private int _maxHealth;
         public float Speed {get {return _speed; }}
 
         [Header("DEBUG")] 
@@ -26,7 +28,7 @@ namespace BerserkPixel.StateMachine
 
         private State<T> _activeState;
         private bool _isInvincible = false;
-        public bool IsInvincible { get { return _isInvincible; }}
+        public bool IsInvincible { get { return _isInvincible; } set { _isInvincible = value; }}
         // since our sprite is facing right, we set it to true
         private bool _isFacingRight = true;
         public bool IsFacingRight { get { return _isFacingRight;}}
@@ -41,6 +43,7 @@ namespace BerserkPixel.StateMachine
             _parent = GetComponent<T>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _attackObject = transform.GetChild(0);
+            _healthBar.Initialize(_maxHealth);
         }
 
         protected virtual void Start()
@@ -101,23 +104,23 @@ namespace BerserkPixel.StateMachine
             GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
         }
 
-        private IEnumerator UnsetInvincible()
-        {
-            bool isVisible = true;
-            for (int i = 0; i < _flashesDuringInvincibility; i++)
-            {
-                isVisible = !isVisible;
-                _spriteRenderer.enabled = isVisible;
-                yield return new WaitForSeconds(_invincibilityTime/_flashesDuringInvincibility);
-            }
-            _spriteRenderer.enabled = true;
-            _isInvincible = false;
-        }
         public void SetInvincible()
         {
             _isInvincible = true;
             StartCoroutine(UnsetInvincible());
 
+            IEnumerator UnsetInvincible()
+            {
+                bool isVisible = true;
+                for (int i = 0; i < _flashesDuringInvincibility; i++)
+                {
+                    isVisible = !isVisible;
+                    _spriteRenderer.enabled = isVisible;
+                    yield return new WaitForSeconds(_invincibilityTime/_flashesDuringInvincibility);
+                }
+                _spriteRenderer.enabled = true;
+                _isInvincible = false;
+            }
         }
 
         // just  a simple implementation of movement by setting the velocity of the Rigidbody
@@ -130,6 +133,12 @@ namespace BerserkPixel.StateMachine
             _attackObject.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
             _spriteRenderer.flipX = _isFacingRight;
         }
-        public abstract void Hit(float damage);
+        public virtual void Hit(int damage) {
+            if (_isInvincible) return;
+            _healthBar.Hurt(damage);
+            SetHurtState();
+        }
+        public abstract void SetHurtState();
+
     }
 }

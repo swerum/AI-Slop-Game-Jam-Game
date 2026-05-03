@@ -48,11 +48,10 @@ namespace Player
         {
             _attackPressed = isPressed;
         }
-        public override void Hit(float damage)
+        public override void SetHurtState()
         {
-            if (IsInvincible) return;
             SetState(typeof(PlayerHurtState));
-            Debug.Log("Player took "+damage+" damage.");
+
         }
     }
 }

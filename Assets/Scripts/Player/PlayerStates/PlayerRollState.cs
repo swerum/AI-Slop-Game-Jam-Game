@@ -31,6 +31,7 @@ namespace Player.States
             
             // instantly set this to false so there's no double rolling
             parent.RollPressed = false;
+            _runner.IsInvincible = true;
 
             _elapsedTime = 0f;
 
@@ -69,6 +70,7 @@ namespace Player.States
             // only change if the "cooldown" timer is reached
             if (_elapsedTime >= _rollTime)
             {
+                _runner.IsInvincible = false;
                 _runner.SetState(typeof(PlayerIdleState));
             }
         }
