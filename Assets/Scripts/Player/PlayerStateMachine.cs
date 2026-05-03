@@ -10,7 +10,7 @@ namespace Player
     public class PlayerStateMachine : StateMachine<PlayerStateMachine>
     {
         [Header("Player Attributes")]
-        [SerializeField] private PlayerInput _playerInput;
+        [SerializeField] private InputManager _playerInput;
         // this is the Transform we want to rotate on the Y axis when changing directions
 
         // this Vector2 can be used on each State to determine any change
