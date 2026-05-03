@@ -135,10 +135,10 @@ namespace BerserkPixel.StateMachine
         }
         public virtual void Hit(int damage) {
             if (_isInvincible) return;
-            _healthBar.Hurt(damage);
-            SetHurtState();
+            int totalHealth = _healthBar.Hurt(damage);
+            DamageResponse(totalHealth);
         }
-        public abstract void SetHurtState();
+        public abstract void DamageResponse(int totalHealth);
 
     }
 }

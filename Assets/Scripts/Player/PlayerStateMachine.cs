@@ -11,6 +11,7 @@ namespace Player
     {
         [Header("Player Attributes")]
         [SerializeField] private InputManager _playerInput;
+        [SerializeField] private GameManager _gameManager;
         // this is the Transform we want to rotate on the Y axis when changing directions
 
         // this Vector2 can be used on each State to determine any change
@@ -48,10 +49,13 @@ namespace Player
         {
             _attackPressed = isPressed;
         }
-        public override void SetHurtState()
+        public override void DamageResponse(int totalHealth)
         {
             SetState(typeof(PlayerHurtState));
-
+            if (totalHealth <= 0)
+            {
+                _gameManager.OpenMenuFromGameplay(GameState.GameOver);
+            }
         }
     }
 }
