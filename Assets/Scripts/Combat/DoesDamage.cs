@@ -7,6 +7,7 @@ using UnityEngine;
 public class DoesDamage : MonoBehaviour
 {
     [SerializeField] private int _damage;
+    public bool isActive = false;
     public int Damage {get { return _damage;}}
     void Start()
     {

@@ -11,6 +11,7 @@ namespace Enemy.States
 
         public override void Enter(EnemyStateMachine parent)
         {
+            base.Enter(parent);
             _elapsedTime = 0f;
         }
         public override void Tick(float deltaTime) {
