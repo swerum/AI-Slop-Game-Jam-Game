@@ -252,7 +252,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1236526225
   m_SortingLayer: -1
-  m_SortingOrder: -1
+  m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 580be95f3e1be4f6c9b6c6d9aac0f082, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -2821,7 +2821,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1623723185}
   - component: {fileID: 1623723184}
-  - component: {fileID: 1623723186}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -2867,9 +2866,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1236526225
+  m_SortingLayer: -1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ebc13700838654145b60ab7f9ee9fd0d, type: 3}
   m_Color: {r: 0, g: 0.3679245, b: 0.02100123, a: 0}
   m_FlipX: 0
@@ -2896,27 +2895,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 146615753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1623723186
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623723183}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!1 &1657010155
 GameObject:
   m_ObjectHideFlags: 0
