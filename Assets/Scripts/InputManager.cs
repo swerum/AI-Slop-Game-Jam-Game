@@ -11,6 +11,7 @@ namespace Player.Input
 
     public class InputManager : MonoBehaviour, GameControls.IPlayerActions, GameControls.IUIActions
     {
+        [SerializeField] GameManager _gameManager;
         public event UnityAction<Vector2> MovementEvent = delegate { };
         public event UnityAction<bool> RollEvent = delegate { };
         public event UnityAction<bool> AttackEvent = delegate {  }; 
@@ -28,8 +29,6 @@ namespace Player.Input
                 _actions.Player.SetCallbacks(this);
                 _actions.UI.SetCallbacks(this);
             }
-
-            SetInputType(InputType.Player);
         }
 
         private void OnDisable()
@@ -44,9 +43,6 @@ namespace Player.Input
 
         public void SetInputType(InputType type)
         {
-            if (_actions.Player.enabled) return;
-
-            
             if (type == InputType.Player) {
                 _actions.UI.Disable();
                 _actions.Player.Enable();
@@ -78,7 +74,11 @@ namespace Player.Input
         }
         public void OnSelect(InputAction.CallbackContext context)
         {
-            AttackEvent?.Invoke(context.performed);
+            SelectEvent?.Invoke(context.performed);
+        }
+        public void OnPauseGame(InputAction.CallbackContext context)
+        {
+            _gameManager.OpenMenuFromGameplay(GameState.Pause);
         }
 
     }
