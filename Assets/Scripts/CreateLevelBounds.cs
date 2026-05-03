@@ -7,7 +7,6 @@ public class CreateLevelBounds : MonoBehaviour
 {
     [SerializeField] float _wallThickness = 0.5f;
     [SerializeField] float _wallHeight = 20f;
-    [SerializeField] float _fenceOpeningWidth=20f;
 
 
     // Start is called before the first frame update
