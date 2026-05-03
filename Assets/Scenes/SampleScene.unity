@@ -9705,7 +9705,6 @@ MonoBehaviour:
   _mainMenu: {fileID: 1341583636}
   _gameOverMenu: {fileID: 1313216901}
   _pauseMenu: {fileID: 1611153931}
-  _winMenu: {fileID: 1879153036}
 --- !u!4 &2007299479
 Transform:
   m_ObjectHideFlags: 0
