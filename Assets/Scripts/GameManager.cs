@@ -9,7 +9,6 @@ public enum GameState
     GameOver,
     MainMenu,
     GamePlay, 
-    Win,
     Pause,
 }
 
@@ -19,7 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameOverMenu;
     [SerializeField] private GameObject _pauseMenu;
-    [SerializeField] private GameObject _winMenu;
     private GameState _currentState;
 
     private void OnEnable()
@@ -44,16 +42,12 @@ public class GameManager : MonoBehaviour
             case GameState.Pause:
                 _pauseMenu.SetActive(true);
                 break;
-            case GameState.Win:
-                _winMenu.SetActive(true);
-                break;
         }
         _currentState = menu;
     }
 
     private void HandleSelect(bool isPressed)
     {
-        Debug.Log("Select");
         DisableAllMenus();
         switch (_currentState)
         {
@@ -61,13 +55,7 @@ public class GameManager : MonoBehaviour
                 _inputManager.SetInputType(InputType.Player);
                 _currentState = GameState.GamePlay;
                 break;
-            case GameState.Win:
-                _currentState = GameState.MainMenu;
-                _mainMenu.SetActive(true);
-                break;
             case GameState.GameOver:
-                _currentState = GameState.MainMenu;
-                _mainMenu.SetActive(true);
                 break;
             case GameState.Pause:
                 _inputManager.SetInputType(InputType.Player);
@@ -82,7 +70,6 @@ public class GameManager : MonoBehaviour
     {
         _mainMenu.SetActive(false);
         _gameOverMenu.SetActive(false);
-        _winMenu.SetActive(false);
         _pauseMenu.SetActive(false);
     }
 }
