@@ -42,7 +42,7 @@ namespace BerserkPixel.StateMachine
         {
             _parent = GetComponent<T>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _attackObject = transform.GetChild(0);
+            _attackObject = GetComponentInChildren<DoesDamage>().transform;
             _healthBar.Initialize(_maxHealth);
         }
 
