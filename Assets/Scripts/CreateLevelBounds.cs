@@ -7,6 +7,9 @@ public class CreateLevelBounds : MonoBehaviour
 {
     [SerializeField] float _wallThickness = 0.5f;
     [SerializeField] float _wallHeight = 20f;
+    [SerializeField] float _fenceOpeningWidth=20f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +18,9 @@ public class CreateLevelBounds : MonoBehaviour
         Vector3 max = new Vector2(bounds.max.x, bounds.max.z);
         CreateBoundingWall(min, new Vector2(max.x, min.y+_wallThickness));
         CreateBoundingWall(min, new Vector2(min.x+_wallThickness, max.y));
-        CreateBoundingWall(new Vector2(min.x, max.y-_wallThickness), max);
         CreateBoundingWall(new Vector2(max.x-_wallThickness, min.y), max);
+        // back wall
+        // CreateBoundingWall(new Vector2(min.x, max.y-_wallThickness), max);
     }
     private BoxCollider CreateBoundingWall(Vector2 min, Vector2 max)
     {
