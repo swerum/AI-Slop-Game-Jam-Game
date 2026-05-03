@@ -1,27 +1,45 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace BerserkPixel.StateMachine
 {
+    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Rigidbody))]
     public abstract class StateMachine<T> : MonoBehaviour where T : MonoBehaviour
     {
         [SerializeField] private List<State<T>> _states;
         [SerializeField] private Animator _animator;
+        [SerializeField] private Transform _spriteTransform;
+        [SerializeField] private Rigidbody _rigidbody;
+        [Header("Game Design")]
         [SerializeField, Range(10, 100)] private float _speed = 50;
+        [SerializeField] private float _invincibilityTime;
         public float Speed {get {return _speed; }}
 
         [Header("DEBUG")] 
         [SerializeField] private bool _debug = true;
 
         private State<T> _activeState;
+        private bool _isInvincible = false;
+        public bool IsInvincible { get { return _isInvincible; }}
+        // since our sprite is facing right, we set it to true
+        private bool _isFacingRight = true;
+        public bool IsFacingRight { get { return _isFacingRight;}}
+        private SpriteRenderer _spriteRenderer;
+        private Transform _attackObject;
+        
 
         private T _parent;
 
         protected virtual void Awake()
         {
             _parent = GetComponent<T>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _attackObject = transform.GetChild(0);
         }
 
         protected virtual void Start()
@@ -80,6 +98,30 @@ namespace BerserkPixel.StateMachine
 
             var content = _activeState != null ? _activeState.name : "(no active state)";
             GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
+        }
+
+        private IEnumerator UnsetInvincible()
+        {
+            // suspend execution for 5 seconds
+            yield return new WaitForSeconds(_invincibilityTime);
+            _isInvincible = false;
+        }
+        protected void SetInvincible()
+        {
+            _isInvincible = true;
+            StartCoroutine(UnsetInvincible());
+
+        }
+
+                // just  a simple implementation of movement by setting the velocity of the Rigidbody
+        public void Move(Vector3 velocity)
+        {
+            _rigidbody.velocity = velocity;
+            if ((!(velocity.x > 0f) || _isFacingRight) && (!(velocity.x < 0f) || !_isFacingRight)) return;
+            
+            _isFacingRight = !_isFacingRight;
+            _attackObject.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
+            _spriteRenderer.flipX = _isFacingRight;
         }
     }
 }
