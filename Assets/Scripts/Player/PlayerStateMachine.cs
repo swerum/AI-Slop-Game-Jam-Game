@@ -3,6 +3,7 @@ using Player.Input;
 using Player.States;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -20,6 +21,8 @@ namespace Player
         public bool RollPressed { get {return _rollPressed; } set { _rollPressed = value; } }
         private bool _attackPressed;
         public bool AttackPressed {  get { return _attackPressed; }}
+        public InputManager PlayerInput { get {return _playerInput; }}
+        public GameManager GameManager { get {return _gameManager; }}
         
         
         private void OnEnable()
@@ -51,10 +54,13 @@ namespace Player
         }
         public override void DamageResponse(int totalHealth)
         {
-            SetState(typeof(PlayerHurtState));
             if (totalHealth <= 0)
             {
-                _gameManager.OpenMenuFromGameplay(GameState.GameOver);
+                SetState(typeof(PlayerDeathState));
+                // _gameManager.OpenMenuFromGameplay(GameState.GameOver);
+            } else
+            {
+                SetState(typeof(PlayerHurtState));
             }
         }
     }

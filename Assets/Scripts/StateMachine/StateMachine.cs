@@ -131,7 +131,7 @@ namespace BerserkPixel.StateMachine
             
             _isFacingRight = !_isFacingRight;
             _attackObject.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
-            _spriteRenderer.flipX = _isFacingRight;
+            _spriteRenderer.flipX = !_isFacingRight;
         }
         public virtual void Hit(int damage) {
             if (_isInvincible) return;

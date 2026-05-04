@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleSelect(bool isPressed)
     {
+        if (_currentState == GameState.GameOver) return;
         DisableAllMenus();
         switch (_currentState)
         {
