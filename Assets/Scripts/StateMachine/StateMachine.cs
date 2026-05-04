@@ -21,6 +21,7 @@ namespace BerserkPixel.StateMachine
         [SerializeField, Range(0, 1)] private float _invincibilityTime;
         [SerializeField, Range(1, 10)]  private int _flashesDuringInvincibility = 7;
         [SerializeField, Range(0, 500)] private int _maxHealth;
+        [SerializeField] private bool _facesRightByDefault;
         public float Speed {get {return _speed; }}
 
         [Header("DEBUG")] 
@@ -131,7 +132,7 @@ namespace BerserkPixel.StateMachine
             
             _isFacingRight = !_isFacingRight;
             _attackObject.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
-            _spriteRenderer.flipX = !_isFacingRight;
+            _spriteRenderer.flipX = _facesRightByDefault ? !_isFacingRight : _isFacingRight;
         }
         public virtual void Hit(int damage) {
             if (_isInvincible) return;

@@ -345,10 +345,10 @@ GameObject:
   - component: {fileID: 3583589472532643533}
   - component: {fileID: 1996055181841457636}
   - component: {fileID: 3121153005826021102}
-  - component: {fileID: 5303104868658774737}
   - component: {fileID: 4643958089984481729}
   - component: {fileID: 4291675898212748887}
   - component: {fileID: 7606102641717694316}
+  - component: {fileID: 1356172160880774752}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -364,10 +364,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4824552147702505040}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.658, y: -0.027514875, z: 0.24}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4329472395571535349}
   - {fileID: 3663987940457379178}
@@ -414,8 +414,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.02767285, b: 0, a: 0.7882353}
+  m_Sprite: {fileID: 1083167157, guid: d97624c17681343a188c7cd0446dcadb, type: 3}
+  m_Color: {r: 1, g: 0.02767285, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -450,29 +450,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &5303104868658774737
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4824552147702505040}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.09
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4643958089984481729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,8 +476,8 @@ MonoBehaviour:
   _invincibilityTime: 0
   _flashesDuringInvincibility: 7
   _maxHealth: 265
+  _facesRightByDefault: 0
   _debug: 1
-  _player: {fileID: 0}
 --- !u!95 &4291675898212748887
 Animator:
   serializedVersion: 5
@@ -509,7 +488,7 @@ Animator:
   m_GameObject: {fileID: 4824552147702505040}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d121d3de9185ea47a4d4aebb9cd2144, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -535,6 +514,27 @@ MonoBehaviour:
   _layerMasks:
   - serializedVersion: 2
     m_Bits: 512
+--- !u!65 &1356172160880774752
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4824552147702505040}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6, y: 3.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6609817089198218130
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 3663987940457379178}
   - component: {fileID: 701754828839441186}
   - component: {fileID: 471788178250037447}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoesDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.26, y: 0.26, z: 0.26}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3583589472532643533}
@@ -587,8 +587,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0.65, y: 0, z: 0}
+  m_Size: {x: 4, y: 2.5, z: 0.87}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &471788178250037447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  isActive: 0
+  isActive: 1
 --- !u!1 &7850085483927273382
 GameObject:
   m_ObjectHideFlags: 0
