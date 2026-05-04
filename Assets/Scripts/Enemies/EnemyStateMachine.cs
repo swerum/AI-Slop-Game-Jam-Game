@@ -16,14 +16,15 @@ namespace Enemy.States {
         protected override void Start() {
             base.Start();
             _player = PlayerStateMachine.Instance;
+            _levelManager = LevelManager.Instance;
         }
         public override void DamageResponse(int totalHealth)
             {
                 SetState(typeof(EnemyRetreatState));
                 if (totalHealth <= 0)
                 {
+                    _levelManager.OnEnemyKilled();
                     Destroy(gameObject);
-                    _levelManager.OnEnemyKilled(gameObject);
                 }
             }
     }

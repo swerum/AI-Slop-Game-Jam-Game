@@ -3,28 +3,43 @@ using Enemy.States;
 using Player;
 using TMPro;
 using UnityEngine;
-
-[RequireComponent(typeof(Collider))]
+using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] int _initialNumEnemies = 2;
     [SerializeField] float _minDistanceToPlayer = 1f;
     [SerializeField, Range(0,1f)] float chanceForTwoEnemies = 0.5f;
     [SerializeField] List<GameObject> _prefabEnemies;
-    [SerializeField] GameObject _levelExitFence;
-    [SerializeField] PlayerStateMachine _player;
-    [SerializeField] TextMeshPro text;
-    List<GameObject> _enemies;
+    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] BoxCollider _boxCollider;
     int _gameScore=0;
+    PlayerStateMachine _player;
+    // List<GameObject> _enemies;
 
+    private static LevelManager _instance;
+    public static LevelManager Instance {get {return _instance; }}
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
     void Start()
     {
-        _enemies = new List<GameObject>();
+        _player = PlayerStateMachine.Instance;
+        CreateEnemies(_initialNumEnemies);
+        SetGameScore(0);
     }
+
+
     public void CreateEnemies(int numEnemies)
     {
-        BoxCollider boxCollider = GetComponent<BoxCollider>();
-        Bounds bounds = boxCollider.bounds;
+        Bounds bounds = _boxCollider.bounds;
         // generate the enemies inside the area described by the BoxCollider
         for (int i = 0; i < numEnemies; i++)
         {
@@ -39,14 +54,11 @@ public class LevelManager : MonoBehaviour
             enemy.transform.position = randomPosition;
             EnemyStateMachine enemyStateMachine = enemy.GetComponent<EnemyStateMachine>();
             enemyStateMachine.LevelManager = this;
-            _enemies.Add(enemy);
         }
     }
-    public void OnEnemyKilled(GameObject enemy)
+    public void OnEnemyKilled()
     {
-        _gameScore += 10;
-        text.text = "Score: "+_gameScore+" Points";
-        _enemies.Remove(enemy);
+        SetGameScore(_gameScore+10);
         int numEnemies = 1;
         if (Random.Range(0f, 1f) <chanceForTwoEnemies) numEnemies++;
         CreateEnemies(numEnemies);
@@ -57,5 +69,10 @@ public class LevelManager : MonoBehaviour
         float randomZ = Random.Range(bounds.min.z, bounds.max.z);
         Vector3 randomPosition = new Vector3(randomX, 0, randomZ);
         return randomPosition;
+    }
+    private void SetGameScore(int newScore)
+    {
+        _gameScore = newScore;
+        text.text = "Score: "+_gameScore+" Points";
     }
 }
