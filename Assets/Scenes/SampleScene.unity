@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.45023066, g: 0.5002645, b: 0.5753772, a: 1}
+  m_IndirectSpecularColor: {r: 0.45023024, g: 0.50026387, b: 0.57537633, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4374,11 +4374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0f26bf43911ae4cbb46c875bc84ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialNumEnemies: 2
+  _initialNumEnemies: 1
   _minDistanceToPlayer: 1
-  chanceForTwoEnemies: 0.5
+  chanceForTwoEnemies: 0.231
   _prefabEnemies:
   - {fileID: 4824552147702505040, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
+  - {fileID: 9153559936853432528, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
   text: {fileID: 1855326863}
   _boxCollider: {fileID: 1071549919}
 --- !u!65 &1071549919
@@ -10163,6 +10164,75 @@ MonoBehaviour:
   m_EffectColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
   m_EffectDistance: {x: -1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!1001 &1061980831142383415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.658
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287382888109086186, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003443486959463527, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003443486959463527, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153559936853432528, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_Name
+      value: ShrimpEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153559936853432528, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6aa88e2ac1e76448a9906174db599be8, type: 3}
 --- !u!1001 &7005414955124113206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10234,3 +10304,4 @@ SceneRoots:
   - {fileID: 1118424508}
   - {fileID: 208343685}
   - {fileID: 7005414955124113206}
+  - {fileID: 1061980831142383415}

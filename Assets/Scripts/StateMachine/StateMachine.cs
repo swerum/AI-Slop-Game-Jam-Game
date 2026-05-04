@@ -41,6 +41,7 @@ namespace BerserkPixel.StateMachine
 
         protected virtual void Awake()
         {
+            _isFacingRight = _facesRightByDefault;
             _parent = GetComponent<T>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _attackObject = GetComponentInChildren<DoesDamage>().transform;
