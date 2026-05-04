@@ -466,7 +466,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _states:
   - {fileID: 11400000, guid: ccbd40fd9dd9a48abb2766f2812ef301, type: 2}
-  - {fileID: 11400000, guid: 40bb53ce10ddb4250bfe93f3a3d265aa, type: 2}
   - {fileID: 11400000, guid: 28a054dcd25914e1ca603b85bdb492eb, type: 2}
   _animator: {fileID: 4291675898212748887}
   _spriteTransform: {fileID: 3583589472532643533}

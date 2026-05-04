@@ -4479,7 +4479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0f26bf43911ae4cbb46c875bc84ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialNumEnemies: 2
+  _initialNumEnemies: 1
   _minDistanceToPlayer: 1
   chanceForTwoEnemies: 0.5
   _prefabEnemies:

@@ -19,13 +19,21 @@ namespace Enemy.States {
             _levelManager = LevelManager.Instance;
         }
         public override void DamageResponse(int totalHealth)
+        {
+            SetState(typeof(EnemyRetreatState));
+            if (totalHealth <= 0)
             {
-                SetState(typeof(EnemyRetreatState));
-                if (totalHealth <= 0)
-                {
-                    _levelManager.OnEnemyKilled();
-                    Destroy(gameObject);
-                }
+                _levelManager.OnEnemyKilled();
+                Destroy(gameObject);
             }
+        }
+        public Vector3 GetVectorToPlayer()
+        {
+            Vector3 playerPos = _player.transform.position;
+            Vector3 towardPlayer = playerPos - transform.position;
+            // now make that in only the xz plane
+            towardPlayer.y = 0;
+            return towardPlayer;
+        }
     }
 }

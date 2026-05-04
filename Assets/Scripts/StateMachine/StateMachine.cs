@@ -45,6 +45,11 @@ namespace BerserkPixel.StateMachine
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _attackObject = GetComponentInChildren<DoesDamage>().transform;
             _healthBar.Initialize(_maxHealth);
+            // duplicate all the states, so all the enemies aren't sharing the same state
+            for (int i = 0; i < _states.Count; i++)
+            {
+                _states[i] = Instantiate(_states[i]);
+            }
         }
 
         protected virtual void Start()
@@ -64,7 +69,7 @@ namespace BerserkPixel.StateMachine
             _activeState?.Enter(_parent);
         }
 
-        public void SetState(Type newStateType)
+        public bool SetState(Type newStateType)
         {
             var newState = _states.FirstOrDefault(s => s.GetType() == newStateType);
             if (newState)
@@ -74,6 +79,7 @@ namespace BerserkPixel.StateMachine
                 }
                 SetState(newState);
             }
+            return newState != null;
         }
 
         protected virtual void Update()

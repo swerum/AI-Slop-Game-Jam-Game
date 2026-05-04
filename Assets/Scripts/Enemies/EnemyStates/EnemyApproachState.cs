@@ -17,11 +17,11 @@ namespace Enemy.States
     
         // similar to FixedUpdate
         public override void FixedTick(float fixedDeltaTime) {
-            Vector3 playerPos = _runner.Player.transform.position;
-            Vector3 towardPlayer = playerPos - _runner.transform.position;
+            Vector3 towardPlayer =_runner.GetVectorToPlayer();
             if (towardPlayer.magnitude <= _targetDistanceFromPlayer)
             {
-                _runner.SetState(typeof(EnemyAttackState));
+                bool hasAttackState = _runner.SetState(typeof(EnemyAttackState));
+                if (!hasAttackState) {_runner.SetState(typeof(EnemyRetreatState));}
                 return;
             }
             _runner.Move(towardPlayer.normalized * (_runner.Speed * fixedDeltaTime));
