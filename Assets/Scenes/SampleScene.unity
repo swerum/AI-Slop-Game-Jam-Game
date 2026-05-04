@@ -4479,7 +4479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0f26bf43911ae4cbb46c875bc84ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialNumEnemies: 1
+  _initialNumEnemies: 0
   _minDistanceToPlayer: 1
   chanceForTwoEnemies: 0.5
   _prefabEnemies:
@@ -5738,7 +5738,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.79, y: 1, z: 0.4}
   m_Center: {x: 0.75, y: 0, z: 0}
@@ -5755,7 +5755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 40
-  isActive: 1
+  isActive: 0
 --- !u!54 &1281860321
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8355,6 +8355,7 @@ GameObject:
   - component: {fileID: 1748226918}
   - component: {fileID: 1748226919}
   - component: {fileID: 1748226920}
+  - component: {fileID: 1748226921}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -8545,6 +8546,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.86, y: 8.9, z: 1}
   m_Center: {x: 0.9, y: 0, z: 0}
+--- !u!114 &1748226921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748226911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6dae807300c41f0b13c72f541a308a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1763231601
 GameObject:
   m_ObjectHideFlags: 0
@@ -9388,17 +9401,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4824552147702505040, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7272738760537168462, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7272738760537168462, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7272738760537168462, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

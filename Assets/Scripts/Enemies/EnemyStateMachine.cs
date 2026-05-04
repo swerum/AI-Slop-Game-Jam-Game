@@ -25,6 +25,9 @@ namespace Enemy.States {
             {
                 _levelManager.OnEnemyKilled();
                 Destroy(gameObject);
+            } else
+            {
+                SetInvincible();
             }
         }
         public Vector3 GetVectorToPlayer()

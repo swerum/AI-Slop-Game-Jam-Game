@@ -1,34 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    [SerializeField] LayerMask[] _layerMasks;
-    List<GameObject> _collidingObjects;
-    public List<GameObject> CollidingObjects { get {return _collidingObjects; }}
-
-    void Start()
+    List<Collider> _collidingObjects;
+    Collider _collider;
+    public List<Collider> GetCollidingObjects()
     {
-        _collidingObjects = new List<GameObject>();
+        if (!_collider.enabled) return new List<Collider>();
+        return _collidingObjects;
+    }
+
+    void Awake()
+    {
+        _collider = GetComponent<Collider>();
+        _collidingObjects = new List<Collider>();
     }
     private void OnTriggerEnter(Collider col) {
-        foreach (LayerMask mask in _layerMasks)
-        {
-            if ((mask & (1 << col.gameObject.layer)) != 0)
-            {
-                _collidingObjects.Add(col.gameObject);
-                return;
-            }
-        }
+        _collidingObjects.Add(col);
     }
 
     void OnTriggerExit(Collider col)
     {
-        if (_collidingObjects.Contains(col.gameObject))
+        if (_collidingObjects.Contains(col))
         {
-            _collidingObjects.Remove(col.gameObject);
+            _collidingObjects.Remove(col);
         }
     }
 

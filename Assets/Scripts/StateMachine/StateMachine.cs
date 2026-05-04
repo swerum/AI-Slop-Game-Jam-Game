@@ -113,11 +113,12 @@ namespace BerserkPixel.StateMachine
 
         public void SetInvincible()
         {
-            _isInvincible = true;
-            StartCoroutine(UnsetInvincible());
+            Assert.IsFalse(_isInvincible);
+            StartCoroutine(SetInvincibleCoroutine());
 
-            IEnumerator UnsetInvincible()
+            IEnumerator SetInvincibleCoroutine()
             {
+                _isInvincible = true;
                 bool isVisible = true;
                 for (int i = 0; i < _flashesDuringInvincibility; i++)
                 {
@@ -127,6 +128,7 @@ namespace BerserkPixel.StateMachine
                 }
                 _spriteRenderer.enabled = true;
                 _isInvincible = false;
+                
             }
         }
 
@@ -141,7 +143,7 @@ namespace BerserkPixel.StateMachine
             _spriteRenderer.flipX = _facesRightByDefault ? !_isFacingRight : _isFacingRight;
         }
         public virtual void Hit(int damage) {
-            if (_isInvincible) return;
+            Assert.IsFalse(_isInvincible);
             int totalHealth = _healthBar.Hurt(damage);
             DamageResponse(totalHealth);
         }
