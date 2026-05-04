@@ -11,9 +11,6 @@ namespace Player.States
         [SerializeField] private AnimationCurve _speedCurve;
         // Use player move state to get the base movement speed
 
-        [Header("DEBUG")] 
-        [SerializeField] private bool _debug = true;
-
         private Vector3 _movementDirection;
         private float _elapsedTime;
         private float _baseSpeed;
@@ -34,20 +31,9 @@ namespace Player.States
             _runner.IsInvincible = true;
 
             _elapsedTime = 0f;
-
-            var startingPos = parent.transform.position;
-
             // calculate the desired end position
             _movementDirection = playerInput; //startingPos + playerInput * _rollSpeedBoost;
-
-            if (!_debug) return;
-            
-            Debug.DrawLine(
-                startingPos,
-                _movementDirection,
-                Color.red,
-                .2f
-            );
+            AudioManager.Instance.Play(SoundEffect.Dash);
         }
 
         public override void Tick(float deltaTime)

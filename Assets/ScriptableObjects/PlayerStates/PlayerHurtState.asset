@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf06ae7f5b374a9ca806dc80a3df933, type: 3}
   m_Name: PlayerHurtState
   m_EditorClassIdentifier: 
-  _stateAnimation: Default
+  _stateAnimation: CatGettingHit

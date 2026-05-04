@@ -11,5 +11,14 @@ namespace Player.States
             base.Enter(parent);
             parent.SetInvincible();
         }
+        public override void AnimationTriggerEvent(AnimationTriggerType triggerType)
+        {
+            base.AnimationTriggerEvent(triggerType);
+
+            if (triggerType == AnimationTriggerType.FinishHurt)
+            {
+                _runner.SetState(typeof(PlayerIdleState));
+            }
+        }
     }
 }

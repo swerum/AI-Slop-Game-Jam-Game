@@ -7,9 +7,6 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] Slider _healthBar;
-
-    [SerializeField] int _healAmount = 20;
-    [SerializeField] int _hurtAmount = 20;
     private int _maxHealth;
     private int _health;
 
@@ -26,19 +23,17 @@ public class HealthBar : MonoBehaviour
         _healthBar.value = _health;
     }
 
-    public void Heal()
+    public void Heal(int healAmount)
     {
-        _health += _healAmount;
+        _health += healAmount;
         if (_health > _maxHealth) { _health= _maxHealth; }
         _healthBar.value = _health;
-        Debug.Log($"Healing {_healAmount} with result of {_healthBar.value}");
     }
 
     public int Hurt(int damage)
     {
         _health -= damage;
         _healthBar.value = _health;
-        Debug.Log($"Hurting {_hurtAmount} with result of {_healthBar.value}");
         return _health;
     }
 }

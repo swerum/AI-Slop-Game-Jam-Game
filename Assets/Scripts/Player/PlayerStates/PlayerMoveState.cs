@@ -40,5 +40,15 @@ namespace Player.States
                 _runner.SetState(typeof(PlayerIdleState));
             }
         }
+        public override void Enter(PlayerStateMachine parent)
+        {
+            base.Enter(parent);
+            AudioManager.Instance.PlayWalkingSound(true);
+        }
+        public override void Exit()
+        {
+            base.Exit();
+            AudioManager.Instance.PlayWalkingSound(false);
+        }
     }
 }

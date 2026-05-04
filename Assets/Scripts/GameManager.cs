@@ -9,7 +9,6 @@ public enum GameState
     GameOver,
     MainMenu,
     GamePlay, 
-    Win,
     Pause,
 }
 
@@ -19,8 +18,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameOverMenu;
     [SerializeField] private GameObject _pauseMenu;
-    [SerializeField] private GameObject _winMenu;
     private GameState _currentState;
+    private bool _pauseStateMachines = true;
+    public bool PauseStateMachines { get {return _pauseStateMachines; }}
+    private static GameManager _instance;
+    public static GameManager Instance {get {return _instance; }}
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     private void OnEnable()
     {
@@ -30,12 +43,14 @@ public class GameManager : MonoBehaviour
         _currentState = GameState.MainMenu;
         DisableAllMenus();
         _mainMenu.SetActive(true);
+        _pauseStateMachines = true;
     }
     private void HandleNavigate(Vector2 navigation) {}
     public void OpenMenuFromGameplay(GameState menu)
     {
         Assert.IsTrue(_currentState == GameState.GamePlay);
         _inputManager.SetInputType(InputType.UI);
+        _pauseStateMachines = true;
         switch(menu)
         {
             case GameState.GameOver:
@@ -43,9 +58,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Pause:
                 _pauseMenu.SetActive(true);
-                break;
-            case GameState.Win:
-                _winMenu.SetActive(true);
+                AudioManager.Instance.Play(SoundEffect.UISound);
                 break;
         }
         _currentState = menu;
@@ -53,25 +66,23 @@ public class GameManager : MonoBehaviour
 
     private void HandleSelect(bool isPressed)
     {
-        Debug.Log("Select");
+        if (_currentState == GameState.GameOver) return;
         DisableAllMenus();
         switch (_currentState)
         {
             case GameState.MainMenu:
                 _inputManager.SetInputType(InputType.Player);
                 _currentState = GameState.GamePlay;
-                break;
-            case GameState.Win:
-                _currentState = GameState.MainMenu;
-                _mainMenu.SetActive(true);
+                _pauseStateMachines = false;
+                AudioManager.Instance.Play(SoundEffect.UISound);
                 break;
             case GameState.GameOver:
-                _currentState = GameState.MainMenu;
-                _mainMenu.SetActive(true);
                 break;
             case GameState.Pause:
                 _inputManager.SetInputType(InputType.Player);
                 _currentState = GameState.GamePlay;
+                _pauseStateMachines = false;
+                AudioManager.Instance.Play(SoundEffect.UISound);
                 break; 
             case GameState.GamePlay:
                 Debug.LogError("Handle Select is a UI Event and shouldn't be able to be called while GameState is Gameplay.");
@@ -82,7 +93,6 @@ public class GameManager : MonoBehaviour
     {
         _mainMenu.SetActive(false);
         _gameOverMenu.SetActive(false);
-        _winMenu.SetActive(false);
         _pauseMenu.SetActive(false);
     }
 }

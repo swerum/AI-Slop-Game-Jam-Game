@@ -21,6 +21,7 @@ namespace BerserkPixel.StateMachine
         [SerializeField, Range(0, 1)] private float _invincibilityTime;
         [SerializeField, Range(1, 10)]  private int _flashesDuringInvincibility = 7;
         [SerializeField, Range(0, 500)] private int _maxHealth;
+        [SerializeField] private bool _facesRightByDefault;
         public float Speed {get {return _speed; }}
 
         [Header("DEBUG")] 
@@ -42,8 +43,13 @@ namespace BerserkPixel.StateMachine
         {
             _parent = GetComponent<T>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _attackObject = transform.GetChild(0);
+            _attackObject = GetComponentInChildren<DoesDamage>().transform;
             _healthBar.Initialize(_maxHealth);
+            // duplicate all the states, so all the enemies aren't sharing the same state
+            for (int i = 0; i < _states.Count; i++)
+            {
+                _states[i] = Instantiate(_states[i]);
+            }
         }
 
         protected virtual void Start()
@@ -63,20 +69,23 @@ namespace BerserkPixel.StateMachine
             _activeState?.Enter(_parent);
         }
 
-        public void SetState(Type newStateType)
+        public bool SetState(Type newStateType)
         {
             var newState = _states.FirstOrDefault(s => s.GetType() == newStateType);
             if (newState)
             {
+                SetState(newState);
                 if (newState.StateAnimation != null) {
                     _animator.Play(newState.StateAnimation);
                 }
-                SetState(newState);
             }
+            return newState != null;
         }
 
         protected virtual void Update()
         {
+            _animator.speed = GameManager.Instance.PauseStateMachines ? 0 : 1;
+            if (GameManager.Instance.PauseStateMachines) return;
             _activeState?.Tick(Time.deltaTime);
             _activeState?.ChangeState();
         }
@@ -93,6 +102,7 @@ namespace BerserkPixel.StateMachine
 
         private void FixedUpdate()
         {
+            if (GameManager.Instance.PauseStateMachines) return;
             _activeState?.FixedTick(Time.fixedDeltaTime);
         }
 
@@ -106,11 +116,12 @@ namespace BerserkPixel.StateMachine
 
         public void SetInvincible()
         {
-            _isInvincible = true;
-            StartCoroutine(UnsetInvincible());
+            Assert.IsFalse(_isInvincible);
+            StartCoroutine(SetInvincibleCoroutine());
 
-            IEnumerator UnsetInvincible()
+            IEnumerator SetInvincibleCoroutine()
             {
+                _isInvincible = true;
                 bool isVisible = true;
                 for (int i = 0; i < _flashesDuringInvincibility; i++)
                 {
@@ -120,6 +131,7 @@ namespace BerserkPixel.StateMachine
                 }
                 _spriteRenderer.enabled = true;
                 _isInvincible = false;
+                
             }
         }
 
@@ -131,10 +143,10 @@ namespace BerserkPixel.StateMachine
             
             _isFacingRight = !_isFacingRight;
             _attackObject.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
-            _spriteRenderer.flipX = _isFacingRight;
+            _spriteRenderer.flipX = _facesRightByDefault ? !_isFacingRight : _isFacingRight;
         }
         public virtual void Hit(int damage) {
-            if (_isInvincible) return;
+            Assert.IsFalse(_isInvincible);
             int totalHealth = _healthBar.Hurt(damage);
             DamageResponse(totalHealth);
         }
