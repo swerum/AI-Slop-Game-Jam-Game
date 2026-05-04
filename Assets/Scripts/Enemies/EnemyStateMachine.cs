@@ -8,10 +8,15 @@ using UnityEngine;
 namespace Enemy.States {
     public class EnemyStateMachine : StateMachine<EnemyStateMachine>
     {
-        [SerializeField] PlayerStateMachine _player;
+        PlayerStateMachine _player;
         private LevelManager _levelManager;
         public LevelManager LevelManager { set {_levelManager = value; }}
         public PlayerStateMachine Player { get {return _player; }}
+
+        protected override void Start() {
+            base.Start();
+            _player = PlayerStateMachine.Instance;
+        }
         public override void DamageResponse(int totalHealth)
             {
                 SetState(typeof(EnemyRetreatState));

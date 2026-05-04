@@ -23,7 +23,20 @@ namespace Player
         public bool AttackPressed {  get { return _attackPressed; }}
         public InputManager PlayerInput { get {return _playerInput; }}
         public GameManager GameManager { get {return _gameManager; }}
-        
+        private static PlayerStateMachine _instance;
+        public static PlayerStateMachine Instance {get {return _instance; }}
+        protected override void Awake()
+        {
+            base.Awake();
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
         
         private void OnEnable()
         {

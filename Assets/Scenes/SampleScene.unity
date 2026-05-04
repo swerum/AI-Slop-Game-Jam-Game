@@ -7747,8 +7747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec12d31b0bcfd4801a3c3d07642ffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
-  isActive: 0
+  _damage: 100
+  isActive: 1
 --- !u!1 &1569694080
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public abstract class TakesDamage<T> : MonoBehaviour where T : StateMachine<T>
     private void OnTriggerEnter(Collider col) {
         if (!IsInLayer(col.gameObject)) return;
         DoesDamage doesDamage = col.gameObject.GetComponent<DoesDamage>();
-        if (!doesDamage) return;
+        if (!doesDamage || !doesDamage.isActive) return;
         _stateMachine.Hit(doesDamage.Damage);
         
     }
