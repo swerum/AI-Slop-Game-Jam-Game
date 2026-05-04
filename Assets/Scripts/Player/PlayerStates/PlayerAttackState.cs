@@ -13,12 +13,10 @@ namespace Player.States
         [Tooltip("The damage to perform on the target")]
         [SerializeField] float _damage;
         private float _attackMovementSpeed;
-        CollisionManager _attackCollider;
         private Vector3 _playerInput;
 
         public override void OnStart(PlayerStateMachine parent)
         {
-            _attackCollider = parent.GetComponentInChildren<CollisionManager>();
             _attackMovementSpeed = parent.Speed * _movementSlowdown;
         }
         public override void Tick(float deltaTime)
@@ -29,18 +27,13 @@ namespace Player.States
         public override void FixedTick(float fixedDeltaTime)
         {
             _runner.Move(_playerInput * (_attackMovementSpeed * fixedDeltaTime));
-
-            // if (_attackCollider.CollidingObjects.Count > 0) {
-            //     foreach (var enemy in _attackCollider.CollidingObjects)
-            //     {
-            //         Debug.Log("Hit an enemy: "+enemy.name);
-            //     } 
-            // }
         }
 
         public override void Enter(PlayerStateMachine parent)
         {
             base.Enter(parent);
+            // Consume the attack input so we don't immediately re-attack on the next frame
+            parent.AttacksBlocked = true;
         }
         
         public override void AnimationTriggerEvent(AnimationTriggerType triggerType)
@@ -54,6 +47,11 @@ namespace Player.States
         }
         public override void ChangeState()
         {
+        }
+        public override void Exit()
+        {
+            base.Exit();
+            _runner.AttacksBlocked = false;
         }
     }
 }

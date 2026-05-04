@@ -19,6 +19,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverMenu;
     [SerializeField] private GameObject _pauseMenu;
     private GameState _currentState;
+    private bool _pauseStateMachines = true;
+    public bool PauseStateMachines { get {return _pauseStateMachines; }}
+    private static GameManager _instance;
+    public static GameManager Instance {get {return _instance; }}
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     private void OnEnable()
     {
@@ -28,12 +43,14 @@ public class GameManager : MonoBehaviour
         _currentState = GameState.MainMenu;
         DisableAllMenus();
         _mainMenu.SetActive(true);
+        _pauseStateMachines = true;
     }
     private void HandleNavigate(Vector2 navigation) {}
     public void OpenMenuFromGameplay(GameState menu)
     {
         Assert.IsTrue(_currentState == GameState.GamePlay);
         _inputManager.SetInputType(InputType.UI);
+        _pauseStateMachines = true;
         switch(menu)
         {
             case GameState.GameOver:
@@ -55,12 +72,14 @@ public class GameManager : MonoBehaviour
             case GameState.MainMenu:
                 _inputManager.SetInputType(InputType.Player);
                 _currentState = GameState.GamePlay;
+                _pauseStateMachines = false;
                 break;
             case GameState.GameOver:
                 break;
             case GameState.Pause:
                 _inputManager.SetInputType(InputType.Player);
                 _currentState = GameState.GamePlay;
+                _pauseStateMachines = false;
                 break; 
             case GameState.GamePlay:
                 Debug.LogError("Handle Select is a UI Event and shouldn't be able to be called while GameState is Gameplay.");

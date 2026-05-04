@@ -21,6 +21,8 @@ namespace Player
         public bool RollPressed { get {return _rollPressed; } set { _rollPressed = value; } }
         private bool _attackPressed;
         public bool AttackPressed {  get { return _attackPressed; }}
+        private bool _attacksBlocked = false;
+        public bool AttacksBlocked { set {_attacksBlocked = value; }}
         public InputManager PlayerInput { get {return _playerInput; }}
         public GameManager GameManager { get {return _gameManager; }}
         private static PlayerStateMachine _instance;
@@ -63,7 +65,7 @@ namespace Player
         }
         private void HandleAttack(bool isPressed)
         {
-            _attackPressed = isPressed;
+            _attackPressed = !_attacksBlocked && isPressed;
         }
         public override void DamageResponse(int totalHealth)
         {

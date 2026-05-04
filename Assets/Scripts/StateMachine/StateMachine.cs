@@ -74,16 +74,18 @@ namespace BerserkPixel.StateMachine
             var newState = _states.FirstOrDefault(s => s.GetType() == newStateType);
             if (newState)
             {
+                SetState(newState);
                 if (newState.StateAnimation != null) {
                     _animator.Play(newState.StateAnimation);
                 }
-                SetState(newState);
             }
             return newState != null;
         }
 
         protected virtual void Update()
         {
+            _animator.speed = GameManager.Instance.PauseStateMachines ? 0 : 1;
+            if (GameManager.Instance.PauseStateMachines) return;
             _activeState?.Tick(Time.deltaTime);
             _activeState?.ChangeState();
         }
@@ -100,6 +102,7 @@ namespace BerserkPixel.StateMachine
 
         private void FixedUpdate()
         {
+            if (GameManager.Instance.PauseStateMachines) return;
             _activeState?.FixedTick(Time.fixedDeltaTime);
         }
 
