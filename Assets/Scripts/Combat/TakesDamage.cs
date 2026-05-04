@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BerserkPixel.StateMachine;
+using System;
 
 // [RequireComponent(typeof(StateMachine<T>))]
 public abstract class TakesDamage<T> : MonoBehaviour where T : StateMachine<T>
@@ -17,6 +18,7 @@ public abstract class TakesDamage<T> : MonoBehaviour where T : StateMachine<T>
         if (!IsInLayer(col.gameObject)) return;
         DoesDamage doesDamage = col.gameObject.GetComponent<DoesDamage>();
         if (!doesDamage || !doesDamage.isActive) return;
+        Debug.Log("Damage Dealt to "+gameObject.name);
         _stateMachine.Hit(doesDamage.Damage);
         
     }

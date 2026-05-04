@@ -30,12 +30,12 @@ namespace Player.States
         {
             _runner.Move(_playerInput * (_attackMovementSpeed * fixedDeltaTime));
 
-            if (_attackCollider.CollidingObjects.Count > 0) {
-                foreach (var enemy in _attackCollider.CollidingObjects)
-                {
-                    Debug.Log("Hit an enemy: "+enemy.name);
-                } 
-            }
+            // if (_attackCollider.CollidingObjects.Count > 0) {
+            //     foreach (var enemy in _attackCollider.CollidingObjects)
+            //     {
+            //         Debug.Log("Hit an enemy: "+enemy.name);
+            //     } 
+            // }
         }
 
         public override void Enter(PlayerStateMachine parent)
