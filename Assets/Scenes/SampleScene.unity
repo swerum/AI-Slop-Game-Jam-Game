@@ -6262,10 +6262,11 @@ MonoBehaviour:
   _uiSound: {fileID: 8300000, guid: 03ef6d508daf84ea795d910c2836dd1b, type: 3}
   _gameOverSound: {fileID: 8300000, guid: 042b8e875b6c949dcaef056dbb0ccfc4, type: 3}
   _attack: {fileID: 8300000, guid: e913245bc693e4f65a678e9fa7693d5f, type: 3}
-  _walk: {fileID: 8300000, guid: 45643f7c0219f4891a283d38aa55cfb5, type: 3}
   _dash: {fileID: 8300000, guid: 4f8962d6bab644969aec913e9baaac08, type: 3}
   _musicClip: {fileID: 8300000, guid: bde4c1d77f01d43a585e87b722b534a9, type: 3}
   _musicVolume: 1
+  _walk: {fileID: 8300000, guid: 45643f7c0219f4891a283d38aa55cfb5, type: 3}
+  _walkingVolume: 1
 --- !u!82 &1419246680
 AudioSource:
   m_ObjectHideFlags: 0

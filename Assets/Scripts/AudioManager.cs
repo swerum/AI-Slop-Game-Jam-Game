@@ -5,7 +5,7 @@ public enum SoundEffect
 {
     UISound,
     Attack,
-    Walk,
+    // Walk,
     Dash,
     GameOver,
 }
@@ -19,15 +19,18 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _uiSound;
     [SerializeField] private AudioClip _gameOverSound;
     [SerializeField] private AudioClip _attack;
-    [SerializeField] private AudioClip _walk;
     [SerializeField] private AudioClip _dash;
 
     [Header("Background Music")]
     [SerializeField] private AudioClip _musicClip;
     [SerializeField, Range(0f, 1f)] private float _musicVolume = 1f;
-
+    [Header("Walking")]
+    [SerializeField] private AudioClip _walk;
+    [SerializeField, Range(0f, 1f)] private float _walkingVolume = 1f;
+    // [SerializeField, Range(0f, 10f)] private float _walkSoundSpeed = 1f;
     private AudioSource _source;
     private AudioSource _musicSource;
+    private AudioSource _walkingSource;
 
     private void Awake()
     {
@@ -51,7 +54,13 @@ public class AudioManager : MonoBehaviour
         {
             _musicSource.Play();
         }
-
+        // walking sounds
+        _walkingSource = gameObject.AddComponent<AudioSource>();
+        _walkingSource.playOnAwake = false;
+        _walkingSource.loop = true;
+        _walkingSource.clip = _walk;
+        _walkingSource.volume = Mathf.Clamp01(_walkingVolume);
+        PlayWalkingSound(false);
         // Nothing to resize when using explicit fields; inspector shows individual clip slots.
     }
 
@@ -66,7 +75,7 @@ public class AudioManager : MonoBehaviour
         {
             SoundEffect.UISound => _uiSound,
             SoundEffect.Attack => _attack,
-            SoundEffect.Walk => _walk,
+            // SoundEffect.Walk => _walk,
             SoundEffect.Dash => _dash,
             SoundEffect.GameOver => _gameOverSound,
             _ => null
@@ -79,5 +88,12 @@ public class AudioManager : MonoBehaviour
         }
 
         _source.PlayOneShot(clip, Mathf.Clamp01(volume));
+    }
+    public void PlayWalkingSound(bool walking) {
+        if (_walk != null)
+        {
+            if (walking) _walkingSource.Play();
+            else _walkingSource.Stop();
+        }
     }
 }
