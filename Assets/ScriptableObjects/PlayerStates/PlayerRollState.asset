@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f2d8b8c849ca47f39d4f2e64389c898, type: 3}
-  m_Name: PlayerRoleState
+  m_Name: PlayerRollState
   m_EditorClassIdentifier: 
-  _stateAnimation: Default
+  _stateAnimation: CatDash
   _rollSpeedBoost: 200
   _rollTime: 0.2
   _speedCurve:
@@ -48,5 +48,4 @@ MonoBehaviour:
     m_PreInfinity: 0
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _playerMoveState: {fileID: 11400000, guid: a7be0f420016c464ea1ad88bfa2599b5, type: 2}
   _debug: 1

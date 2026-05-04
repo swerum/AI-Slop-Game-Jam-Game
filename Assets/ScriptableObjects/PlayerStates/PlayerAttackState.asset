@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4b02cc2e6364110a45a374a4e73755, type: 3}
   m_Name: PlayerAttackState
   m_EditorClassIdentifier: 
-  _stateAnimation: Attack
-  _attackCollider: {fileID: 0}
+  _stateAnimation: CatAttack2
+  _movementSlowdown: 0.5
   _damage: 20
