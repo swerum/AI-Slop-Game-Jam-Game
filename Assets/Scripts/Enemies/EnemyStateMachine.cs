@@ -8,6 +8,7 @@ using UnityEngine;
 namespace Enemy.States {
     public class EnemyStateMachine : StateMachine<EnemyStateMachine>
     {
+        [SerializeField] GameObject _enemyDieEffect;
         PlayerStateMachine _player;
         private LevelManager _levelManager;
         public LevelManager LevelManager { set {_levelManager = value; }}
@@ -25,6 +26,11 @@ namespace Enemy.States {
             {
                 _levelManager.OnEnemyKilled();
                 Destroy(gameObject);
+                if (_enemyDieEffect)
+                {
+                    GameObject effect = Instantiate(_enemyDieEffect);
+                    effect.transform.position = transform.position;
+                }
             } else
             {
                 SetInvincible();
