@@ -514,6 +514,7 @@ MonoBehaviour:
   _layerMasks:
   - serializedVersion: 2
     m_Bits: 512
+  _hitEffectPrefab: {fileID: 2839816349254988840, guid: 645e103c1f0594e98a36dc62706ef0ed, type: 3}
 --- !u!65 &1356172160880774752
 BoxCollider:
   m_ObjectHideFlags: 0

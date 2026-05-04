@@ -8,6 +8,7 @@ using System;
 public abstract class TakesDamage<T> : MonoBehaviour where T : StateMachine<T>
 {
     [SerializeField] LayerMask[] _layerMasks;
+    [SerializeField] GameObject _hitEffectPrefab;
     private T _stateMachine;
     private CollisionManager _collisionManager;
 
@@ -30,6 +31,7 @@ public abstract class TakesDamage<T> : MonoBehaviour where T : StateMachine<T>
         if (!doesDamage || !doesDamage.isActive) return;
         Debug.Log("Damage Dealt to "+gameObject.name);
         _stateMachine.Hit(doesDamage.Damage);
+        CreateHitEffect(col);
         
     }
     private bool IsInLayer(GameObject obj)
@@ -43,5 +45,10 @@ public abstract class TakesDamage<T> : MonoBehaviour where T : StateMachine<T>
         }
         return false;
     }
-
+    private void CreateHitEffect(Collider col)
+    {
+        Vector3 closestPoint = col.ClosestPoint(transform.position);
+        GameObject effect = Instantiate(_hitEffectPrefab);
+        effect.transform.position = closestPoint;
+    }
 }
