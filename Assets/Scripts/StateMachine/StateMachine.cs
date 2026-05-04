@@ -18,7 +18,7 @@ namespace BerserkPixel.StateMachine
         [SerializeField] private HealthBar _healthBar;
         [Header("Game Design")]
         [SerializeField, Range(10, 100)] private float _speed = 50;
-        [SerializeField, Range(0, 1)] private float _invincibilityTime;
+        [SerializeField, Range(0, 5)] private float _invincibilityTime;
         [SerializeField, Range(1, 10)]  private int _flashesDuringInvincibility = 7;
         [SerializeField, Range(0, 500)] private int _maxHealth;
         [SerializeField] private bool _facesRightByDefault;
@@ -29,7 +29,9 @@ namespace BerserkPixel.StateMachine
 
         private State<T> _activeState;
         private bool _isInvincible = false;
-        public bool IsInvincible { get { return _isInvincible; } set { _isInvincible = value; }}
+        public bool IsInvincible { get { return _isInvincible; } set { 
+            _isInvincible = value; 
+         }}
         // since our sprite is facing right, we set it to true
         private bool _isFacingRight = true;
         public bool IsFacingRight { get { return _isFacingRight;}}
@@ -122,16 +124,20 @@ namespace BerserkPixel.StateMachine
 
             IEnumerator SetInvincibleCoroutine()
             {
+                // Debug.Log("Setting "+gameObject.name+" invincible");
                 _isInvincible = true;
                 bool isVisible = true;
                 for (int i = 0; i < _flashesDuringInvincibility; i++)
                 {
                     isVisible = !isVisible;
                     _spriteRenderer.enabled = isVisible;
-                    yield return new WaitForSeconds(_invincibilityTime/_flashesDuringInvincibility);
+                    float timePerFlash = _invincibilityTime/_flashesDuringInvincibility;
+                    // Debug.Log(timePerFlash);
+                    yield return new WaitForSeconds(timePerFlash);
                 }
                 _spriteRenderer.enabled = true;
                 _isInvincible = false;
+                // Debug.Log("Setting "+gameObject.name+" not invincible");
                 
             }
         }

@@ -10,6 +10,7 @@ namespace Player.States
         {
             base.Enter(parent);
             _runner.PlayerInput.SetInputType(Input.InputType.UI);
+            _runner.IsInvincible = true;
         }
 
         public override void Tick(float deltaTime)

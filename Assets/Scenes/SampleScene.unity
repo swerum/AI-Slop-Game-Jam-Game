@@ -4374,7 +4374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0f26bf43911ae4cbb46c875bc84ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialNumEnemies: 1
+  _initialNumEnemies: 0
   _minDistanceToPlayer: 1
   chanceForTwoEnemies: 0.231
   _prefabEnemies:
@@ -8498,7 +8498,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1748226917}
   _healthBar: {fileID: 1258032684}
   _speed: 62.8
-  _invincibilityTime: 0.313
+  _invincibilityTime: 1.38
   _flashesDuringInvincibility: 7
   _maxHealth: 100
   _facesRightByDefault: 1
@@ -9441,21 +9441,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4643958089984481729, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
+      propertyPath: _speed
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 4824552147702505040, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4824552147702505040, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7272738760537168462, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7272738760537168462, guid: fb9afc63d9016a04ea4433d7351f830f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

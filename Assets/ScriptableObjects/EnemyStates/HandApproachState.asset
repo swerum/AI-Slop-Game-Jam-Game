@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HandApproachState
   m_EditorClassIdentifier: 
   _stateAnimation: HandWalk
-  _targetDistanceFromPlayer: 0.1
+  _targetDistanceFromPlayer: 0.3
