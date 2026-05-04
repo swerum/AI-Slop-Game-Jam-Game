@@ -34,6 +34,7 @@ namespace Player.States
             base.Enter(parent);
             // Consume the attack input so we don't immediately re-attack on the next frame
             parent.AttacksBlocked = true;
+            AudioManager.Instance.Play(SoundEffect.Attack);
         }
         
         public override void AnimationTriggerEvent(AnimationTriggerType triggerType)

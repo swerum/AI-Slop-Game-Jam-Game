@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Pause:
                 _pauseMenu.SetActive(true);
+                AudioManager.Instance.Play(SoundEffect.UISound);
                 break;
         }
         _currentState = menu;
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
                 _inputManager.SetInputType(InputType.Player);
                 _currentState = GameState.GamePlay;
                 _pauseStateMachines = false;
+                AudioManager.Instance.Play(SoundEffect.UISound);
                 break;
             case GameState.GameOver:
                 break;
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
                 _inputManager.SetInputType(InputType.Player);
                 _currentState = GameState.GamePlay;
                 _pauseStateMachines = false;
+                AudioManager.Instance.Play(SoundEffect.UISound);
                 break; 
             case GameState.GamePlay:
                 Debug.LogError("Handle Select is a UI Event and shouldn't be able to be called while GameState is Gameplay.");
